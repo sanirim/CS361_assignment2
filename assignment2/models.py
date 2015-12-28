@@ -5,8 +5,8 @@ class course(models.Model):
     code = models.CharField(max_length=20)
     classroom = models.CharField(max_length=30)
     times = models.TimeField()
-    teacher = models.ForeignKey(teacher)
-    students = models.ManyToManyField(student, blank=True)
+    teacher = models.ForeignKey(teacher, blank=True)
+    students = models.ManyToManyField('student', blank=True)
 
 class teacher(models.Model):
     first_name = models.CharField(max_length=50)
@@ -19,4 +19,4 @@ class student(models.Model):
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
     email = models.EmailField()
-    courses = models.ManyToManyField(course, through=course.students.through, blank=True)
+    courses = models.ManyToManyField('course', through=course.students.through, blank=True)
