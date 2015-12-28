@@ -1,5 +1,13 @@
 from django.db import models
 
+class teacher(models.Model):
+    first_name = models.CharField(max_length=50)
+    last_name = models.CharField(max_length=50)
+    office_details = models.CharField(max_length=200)
+    phone = models.IntegerField()
+    email = models.EmailField()
+
+
 class course(models.Model):
     name = models.CharField(max_length=100)
     code = models.CharField(max_length=20)
@@ -8,12 +16,6 @@ class course(models.Model):
     teacher = models.ForeignKey(teacher, blank=True)
     students = models.ManyToManyField('student', blank=True)
 
-class teacher(models.Model):
-    first_name = models.CharField(max_length=50)
-    last_name = models.CharField(max_length=50)
-    office_details = models.CharField(max_length=200)
-    phone = models.IntegerField()
-    email = models.EmailField()
 
 class student(models.Model):
     first_name = models.CharField(max_length=50)
